@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #circleRandom {
+        width:1000px;
+        height:1000px;
+        
+        
+    }
+    #circle {
+        width:1px;
+        height:1px;
+        border-radius: 50%;
+        background-color: black;
+        position: absolute;
+    }
+</style>
+<body>
+    <section id = "circleRandom">
+        <div id = "circlegame"></div>
+    </section>
+</body>
+</html>
+<script>
+    const circle = document.getElementById("circleRandom")
+
+    const creatCircle = () => {
+        
+        let newCircle = document.createElement("div")
+        newCircle.setAttribute("id","circle");
+
+        circle.appendChild(newCircle);
+        
+        return newCircle;
+    }
+
+    
+    const putCircle =(createdCircle) => {
+       
+        let randomNumberX = Math.floor(Math.random() * 1000);
+        let randomNumberY = Math.floor(Math.random() * 1000);
+        let randomColorA = Math.floor(Math.random() * 255);
+        let randomColorB = Math.floor(Math.random() * 255);
+        let randomColorC = Math.floor(Math.random() * 255);
+
+        let createdCircleWidth = Math.floor(Math.random() * 100);
+        let createdCircleHeight = Math.floor(Math.random() * 100);
+        const timer = setInterval(() => {
+
+            createdCircleWidth +=1;
+            createdCircleHeight +=1;
+            randomColorA += 1;
+        
+            createdCircle.style.backgroundColor = "#" + randomColorA; 
+            createdCircle.style.width = createdCircleWidth + "px";
+            createdCircle.style.height = createdCircleHeight + "px";
+            createdCircle.style.top = randomNumberX;
+            createdCircle.style.left = randomNumberY;
+            
+            if(createdCircleWidth >= 150 && createdCircleHeight >=150){
+                deleteCircle(createdCircle)
+                clearInterval(timer)
+            }
+            
+            
+        },100);
+    }
+
+    const deleteCircle = (createdCircle) => {
+       circle.removeChild(createdCircle);
+        
+    }
+
+
+    const random = () => {
+        const createdCircle = creatCircle();
+        putCircle(createdCircle,deleteCircle);
+        
+    }
+
+    
+    
+
+    const handleKeyDown = (e) => {
+        if(e.keyCode === 68){
+            random()
+            
+        }
+    }
+    window.addEventListener("keydown" , handleKeyDown)
+    
+
+  
+</script>
