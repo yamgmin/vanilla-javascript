@@ -5,11 +5,9 @@
     <title>Document</title>
 </head>
 <style>
-    #circleRandom {
-        width:1000px;
-        height:1000px;
-        
-        
+    #circleBg { 
+        width:1980px;
+        height:1020px;
     }
     #circle {
         width:1px;
@@ -20,78 +18,99 @@
     }
 </style>
 <body>
-    <section id = "circleRandom">
-        <div id = "circlegame"></div>
+    <section id = "space">
     </section>
 </body>
 </html>
 <script>
-    const circle = document.getElementById("circleRandom")
-
+    const space = document.getElementById("space")
+    
     const creatCircle = () => {
-        
+
         let newCircle = document.createElement("div")
         newCircle.setAttribute("id","circle");
 
-        circle.appendChild(newCircle);
+        space.appendChild(newCircle);
         
         return newCircle;
     }
 
-    
-    const putCircle =(createdCircle) => {
+    const putCircle =(createdCircle,offsetX, offsetY) => {
        
-        let randomNumberX = Math.floor(Math.random() * 1000);
-        let randomNumberY = Math.floor(Math.random() * 1000);
-        let randomColorA = Math.floor(Math.random() * 255);
-        let randomColorB = Math.floor(Math.random() * 255);
-        let randomColorC = Math.floor(Math.random() * 255);
+        let randomX = Math.floor(Math.random() * 1920);
+        let randomY = Math.floor(Math.random() * 1080);
 
-        let createdCircleWidth = Math.floor(Math.random() * 100);
-        let createdCircleHeight = Math.floor(Math.random() * 100);
+            createdCircle.style.top = randomY;
+            createdCircle.style.left = randomX;
+            createdCircle.style.top = offsetY;
+            createdCircle.style.left = offsetX;
+    }
+
+    // const clickCircle = (createdCircle,offsetX, offsetY) => {
+       
+    //     createdCircle.style.top = offsetY;
+    //     createdCircle.style.left = offsetX;
+        
+    // }
+
+    const sizeCircle = (createdCircle) => {
+        
+        let createdCircleR = Math.floor(Math.random() * 100);
+            
         const timer = setInterval(() => {
 
-            createdCircleWidth +=1;
-            createdCircleHeight +=1;
-            randomColorA += 1;
-        
-            createdCircle.style.backgroundColor = "#" + randomColorA; 
-            createdCircle.style.width = createdCircleWidth + "px";
-            createdCircle.style.height = createdCircleHeight + "px";
-            createdCircle.style.top = randomNumberX;
-            createdCircle.style.left = randomNumberY;
-            
-            if(createdCircleWidth >= 150 && createdCircleHeight >=150){
+            createdCircleR += 10;
+
+            createdCircle.style.width = createdCircleR + "px";
+            createdCircle.style.height = createdCircleR + "px";
+
+            if(createdCircleR >= 150){
                 deleteCircle(createdCircle)
                 clearInterval(timer)
-            }
-            
-            
+        }
+
+
         },100);
     }
 
+    const randomColor = (createdCircle) => {
+        let random = 0;
+        
+        const timer = setInterval(() => {
+            random = Math.random() * 0xffffff; 
+            random = parseInt(random)
+            random = random.toString(16); 
+            createdCircle.style.backgroundColor =  "#" +random;
+
+        }, 100);
+
+    }
+    
     const deleteCircle = (createdCircle) => {
-       circle.removeChild(createdCircle);
-        
+        space.removeChild(createdCircle);
     }
-
-
-    const random = () => {
-        const createdCircle = creatCircle();
-        putCircle(createdCircle,deleteCircle);
-        
-    }
-
-    
-    
 
     const handleKeyDown = (e) => {
+        const createdCircle = creatCircle();
         if(e.keyCode === 68){
-            random()
+            putCircle(createdCircle)
+            sizeCircle(createdCircle)
+            randomColor(createdCircle)
             
         }
     }
+
+    const handleClick = (e) => {
+        const {offsetX, offsetY} = e;
+        const createdCircle = creatCircle();
+        putCircle(createdCircle,offsetX, offsetY)
+        sizeCircle(createdCircle)
+        randomColor(createdCircle)
+        
+    }
+    
     window.addEventListener("keydown" , handleKeyDown)
+    window.addEventListener("click", handleClick)
     
 
   
