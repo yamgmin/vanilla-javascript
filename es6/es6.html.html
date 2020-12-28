@@ -1,0 +1,82 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    // 템플릿 문자열
+    let string1 = "안녕하세요";
+    let string2 = "반갑습니다";
+
+    //let greeting = string1 + " " + string2;
+    // let greeting = `${string1 + " " + string2}`;
+    let greeting = `${string1} ${string2}`; // 빈문자열은 순수문자열로 변환됨
+    console.log(greeting);
+
+    let product = {name : "도서", price : "4200d원"}
+    // let message = "제품" + product.name + "의 가격은" + product.price + " 입니다.";
+    let message = `제품 ${product.name} 의 가격은 ${product.price} 입니다`;
+    console.log(message)
+
+    let value1 = 1;
+    let value2 = 2;
+    // let operator1 = "곱셈값은" + (value1 * value2) + "입니다";
+    let operator1 = `곱셈값은 ${(value1 * value2)}입니다`;
+    console.log(operator1)
+
+    // let multiline = "문자열1\n문자열2"
+    let multiline = `
+    문자열1
+    문자열2
+    문자열3`;
+    console.log(multiline)
+
+    //전개 연산자 
+
+    let array1 = ['one', 'two',3,4,5,6];
+    let array2 = ['three', 'four'];
+
+    //let combined = array1.concat(array2);
+    //let combined = [array1, array2];
+    //let combined = [...array1, ...array2]; // 하나씩 자동으로 풀림(풀어서 나열하는역활)
+    let combined = ['zero',...array1, 'add',...array2];
+    console.log(combined);
+
+    // let first = array1[0];
+    // let [first,second] = array1;
+    let [first, second, ...other] = array1; //첫번째 제외 모든항목
+    // let second = array1[1];
+    console.log(first, other);
+
+    function func(first, ...args) { //... 펼쳐지는 역활
+        
+        // console.log(arguments); //arguments 특수한 변수 객체와 같은 형태로 항목들이 할당됨
+        //console.log(Array.prototype.slice.call(arguments)); //배열로 변함
+        //let args = Array.prototype.slice.call(arguments);
+        //console.log(args[0]); 
+        // console.log(args.slice(1)); //나머지를 slice 로 잘라내서
+    
+        // console.log(first);
+        // console.log(args);
+    }
+    func(1,2,3);
+
+    //let[first] = array1;
+
+    let object1 = {one :1, two: 2, other :0};
+    let object2 = {three: 3, four: 4, other:-1, obj:object1};
+    let combinedObj = {...object1, ...object2} //뒤에있는값이 앞에값을 병합함 key값 충돌했을시
+    console.log(combinedObj)
+    let one = "one";
+    //let {one: myOne} = object1; //key 값이 동일해야 추출이됨
+    let {obj: myObj} = object2;
+    let {obj:{two : myTwo}} =object2;
+    console.log(myTwo);
+
+    
+</script>
