@@ -1,0 +1,105 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #section {
+        position:relative;
+    }   
+    #name {
+        width: 100px;
+        text-align: center;
+        border:1px solid black;
+        position: absolute;
+        top:50px;
+        right:100px;
+    }
+    #money {
+        width:100px;
+        text-align: center;
+        border:1px solid black;
+        position: absolute;
+        top:100px;
+        right:100px;
+    }
+    #level {
+        font-size: 120px;
+        text-align: center;
+    }
+    #sword {
+        position: absolute;
+        top:30%;
+        left:30%;
+    }
+    
+    #damage {
+        font-size: 36px;
+        position: absolute;
+        top:40%;
+        right:35%;
+    }
+    #propobility {
+        font-size: 36px;
+        position: absolute;
+        right:100px;
+        bottom:20%;
+    }
+    #cost {
+        font-size: 36px;
+        position: absolute;
+        bottom:60%;
+        right:100px;
+    }
+    
+    #enhance {
+        font-size: 36px;
+        text-align: center;
+        cursor: pointer;
+        border:1px solid black; 
+        position: absolute; 
+        bottom: 40%;
+        right: 100px;
+        
+    }
+    #message_box {
+        width: 90%;
+        height: 30%;
+        border: 1px solid black;
+        position: absolute;
+        left:100px;
+        bottom:50px;
+    }
+    #message {
+        font-size: 72px;
+        width:auto;
+        height:100px;
+        position: absolute;
+        bottom:100px;
+        left:100px;
+        text-align: center;
+        
+    }
+
+
+</style>
+<body>
+    <section>
+        <div id='name'></div>
+        <div id='money'></div>
+        <div id='level'></div>
+        <img src='unnamed.jpg' id='sword'>
+        <div id='damage'></div>
+        
+        <div id='message_box'>
+            <div id='cost'></div>
+            <div id='propobility'></div>
+            <div id='enhance'></div>
+            <div id='message'></div>
+        </div>
+    </section>
+    
+</body>
+</html>
+<script src='upgrade.js'></script>
